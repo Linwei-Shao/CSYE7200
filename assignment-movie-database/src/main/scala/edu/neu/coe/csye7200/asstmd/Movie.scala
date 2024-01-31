@@ -101,8 +101,9 @@ object Movie extends App {
     def parse(w: String): Try[Movie] = {
 // TO BE IMPLEMENTED 
 
-      // STUB
-       Try(???)
+      val fields = w.split(",").map(_.trim).toList
+
+      Try(apply(fields))
       // END
     }
   }
@@ -129,7 +130,7 @@ object Movie extends App {
       // TO BE IMPLEMENTED 
 
       // STUB
-       ???
+      indices.map(list)
       // END
     }
     result.toList
@@ -219,7 +220,10 @@ object Rating {
 
 
     // STUB
-     ???
+    s match {
+      case rRating(code, _, age) => Rating(code, Option(age).map(_.toInt))
+      case _ => throw ParseException(s"Invalid rating format: $s")
+    }
     // END
   }
 }
