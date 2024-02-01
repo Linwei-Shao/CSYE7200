@@ -41,7 +41,7 @@ trait RandomState[T] {
   def flatMap[U](f: T => RandomState[U]): RandomState[U] = {
 // TO BE IMPLEMENTED 
 
-???
+    f(get)
   }
 
   /**
@@ -52,7 +52,7 @@ trait RandomState[T] {
   def toStream: LazyList[T] = {
 // TO BE IMPLEMENTED 
 
-???
+    get #:: next.toStream
   }
 }
 
@@ -67,9 +67,12 @@ case class JavaRandomState[T](n: Long, g: Long => T) extends RandomState[T] {
   // Hint: Remember to use the "seed" to generate next RandomState.
   // 7 points
   def next: RandomState[T] = {
-// TO BE IMPLEMENTED 
+// TO BE IMPLEMENTED
 
-???
+    val seed = new Random(n).nextLong()
+    JavaRandomState(seed, g)
+
+
   }
 
   /*END*/
@@ -78,7 +81,7 @@ case class JavaRandomState[T](n: Long, g: Long => T) extends RandomState[T] {
   def get: T = {
 // TO BE IMPLEMENTED 
 
-???
+    g(n)
   }
 
   /*END*/
@@ -87,7 +90,7 @@ case class JavaRandomState[T](n: Long, g: Long => T) extends RandomState[T] {
   def map[U](f: T => U): RandomState[U] = {
 // TO BE IMPLEMENTED 
 
-???
+    JavaRandomState(n, g andThen f)
   }
 }
 
@@ -119,9 +122,8 @@ object RandomState {
   // Hint: This is a easy one, remember that it not only convert a Long to a Double but also scale down the number to -1 ~ 1.
   // 4 points
   val longToDouble: Long => Double =
-// TO BE IMPLEMENTED 
 
-???
+    l => (l.toDouble / Long.MaxValue)
   val doubleToUniformDouble: Double => UniformDouble = { x => UniformDouble((x + 1) / 2) }
 }
 
