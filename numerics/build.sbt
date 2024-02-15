@@ -15,6 +15,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % scalaTestVersion % "test
 resolvers += "Typesafe Repository" at "https://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4",
   "org.scala-lang.modules" %% "scala-xml" % "1.2.0",
   //  "org.spire-math" %% "spire" % "0.13.0",
   "org.typelevel" %% "cats-core" % "2.2.0",

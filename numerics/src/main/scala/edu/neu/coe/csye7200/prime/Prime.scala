@@ -42,7 +42,10 @@ case class Prime(x: BigInt, var valid: Option[Boolean]) {
     }
     isPrime
   }
+
 }
+
+
 
 object Prime {
 
@@ -53,7 +56,6 @@ object Prime {
   val probablePrimes: LazyList[Prime] = (BigInt(2L) #:: LazyList.iterate(BigInt(3))(b => b + 2)) filter (_.isProbablePrime(20)) map (Prime(_))
 
   val primes: LazyList[Prime] = probablePrimes filter (_.isPrime)
-
 
   /**
    * Create an (optional) Mersenne Prime of form (2 to the power of the ith prime) - 1.
